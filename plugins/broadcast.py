@@ -1,11 +1,7 @@
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 import traceback, datetime, asyncio, string, random, time, os, aiofiles, aiofiles.os
-from database.access import techvj
+from database.access import DB
 from pyrogram import filters
-from pyrogram import Client as Tech_VJ
+from pyrogram import Client
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, PeerIdInvalid
 
@@ -29,11 +25,11 @@ async def send_msg(user_id, message):
         return 500, f"{user_id} : {traceback.format_exc()}\n"
         
 
-@Tech_VJ.on_message(filters.private & filters.command('broadcast') & filters.reply)
+@Client.on_message(filters.private & filters.command('broadcast') & filters.reply)
 async def broadcast_(c, m):
-    if m.from_user.id != Config.TECH_VJ_OWNER_ID:
+    if m.from_user.id != Config.OWNER_ID:
         return
-    all_users = await techvj.get_all_users()
+    all_users = await DB.get_all_users()
     
     broadcast_msg = m.reply_to_message
     
@@ -46,7 +42,7 @@ async def broadcast_(c, m):
         text = f"Broadcast initiated! You will be notified with log file when all the users are notified."
     )
     start_time = time.time()
-    total_users = await techvj.total_users_count()
+    total_users = await DB.total_users_count()
     done = 0
     failed = 0
     success = 0
@@ -74,7 +70,7 @@ async def broadcast_(c, m):
                 failed += 1
             
             if sts == 400:
-                await techvj.delete_user(user['id'])
+                await DB.delete_user(user['id'])
             
             done += 1
             if broadcast_ids.get(broadcast_id) is None:
