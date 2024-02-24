@@ -1,7 +1,3 @@
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 # the logging things
 import logging
 logging.basicConfig(level=logging.DEBUG,
@@ -33,7 +29,7 @@ async def ddl_call_back(bot, update):
     cb_data = update.data
     # youtube_dl extractors
     tg_send_type, youtube_dl_format, youtube_dl_ext = cb_data.split("=")
-    thumb_image_path = Config.TECH_VJ_DOWNLOAD_LOCATION + \
+    thumb_image_path = Config.DOWNLOAD_LOCATION + \
         "/" + str(update.from_user.id) + ".jpg"
     youtube_dl_url = update.message.reply_to_message.text
     custom_file_name = os.path.basename(youtube_dl_url)
@@ -67,14 +63,14 @@ async def ddl_call_back(bot, update):
                 youtube_dl_url = youtube_dl_url[o:o + l]
     user = await bot.get_me()
     mention = user["mention"]
-    description = Translation.TECH_VJ_CUSTOM_CAPTION_UL_FILE.format(mention)
+    description = Translation.CUSTOM_CAPTION_UL_FILE.format(mention)
     start = datetime.now()
     await bot.edit_message_text(
         text=Translation.DOWNLOAD_START,
         chat_id=update.message.chat.id,
         message_id=update.message.id
     )
-    tmp_directory_for_each_user = Config.TECH_VJ_DOWNLOAD_LOCATION + "/" + str(update.from_user.id)
+    tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id)
     if not os.path.isdir(tmp_directory_for_each_user):
         os.makedirs(tmp_directory_for_each_user)
     download_directory = tmp_directory_for_each_user + "/" + custom_file_name
@@ -93,7 +89,7 @@ async def ddl_call_back(bot, update):
             )
         except asyncio.TimeoutError:
             await bot.edit_message_text(
-                text=Translation.TECH_VJ_SLOW_URL_DECED,
+                text=Translation.SLOW_URL_DECED,
                 chat_id=update.message.chat.id,
                 message_id=update.message.id
             )
@@ -105,17 +101,17 @@ async def ddl_call_back(bot, update):
             chat_id=update.message.chat.id,
             message_id=update.message.id
         )
-        file_size = Config.TECH_VJ_TG_MAX_FILE_SIZE + 1
+        file_size = Config.TG_MAX_FILE_SIZE + 1
         try:
             file_size = os.stat(download_directory).st_size
         except FileNotFoundError as exc:
             download_directory = os.path.splitext(download_directory)[0] + "." + "mkv"
             # https://stackoverflow.com/a/678242/4723940
             file_size = os.stat(download_directory).st_size
-        if file_size > Config.TECH_VJ_TG_MAX_FILE_SIZE:
+        if file_size > Config.TG_MAX_FILE_SIZE:
             await bot.edit_message_text(
                 chat_id=update.message.chat.id,
-                text=Translation.TECH_VJ_RCHD_TG_API_LIMIT,
+                text=Translation.RCHD_TG_API_LIMIT,
                 message_id=update.message.id
             )
         else:
@@ -134,7 +130,7 @@ async def ddl_call_back(bot, update):
                     reply_to_message_id=update.message.reply_to_message.id,
                     progress=progress_for_pyrogram,
                     progress_args=(
-                        Translation.TECH_VJ_UPLOAD_START,
+                        Translation.UPLOAD_START,
                         update.message,
                         start_time
                     )
@@ -149,7 +145,7 @@ async def ddl_call_back(bot, update):
                     reply_to_message_id=update.message.reply_to_message.id,
                     progress=progress_for_pyrogram,
                     progress_args=(
-                        Translation.TECH_VJ_UPLOAD_START,
+                        Translation.UPLOAD_START,
                         update.message,
                         start_time
                     )
@@ -166,7 +162,7 @@ async def ddl_call_back(bot, update):
                     reply_to_message_id=update.message.reply_to_message.id,
                     progress=progress_for_pyrogram,
                     progress_args=(
-                        Translation.TECH_VJ_UPLOAD_START,
+                        Translation.UPLOAD_START,
                         update.message,
                         start_time
                     )
@@ -186,7 +182,7 @@ async def ddl_call_back(bot, update):
                     reply_to_message_id=update.message.reply_to_message.id,
                     progress=progress_for_pyrogram,
                     progress_args=(
-                        Translation.TECH_VJ_UPLOAD_START,
+                        Translation.UPLOAD_START,
                         update.message,
                         start_time
                     )
@@ -202,14 +198,14 @@ async def ddl_call_back(bot, update):
             time_taken_for_download = (end_one - start).seconds
             time_taken_for_upload = (end_two - end_one).seconds
             await bot.edit_message_text(
-                text=Translation.TECH_VJ_AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download, time_taken_for_upload),
+                text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download, time_taken_for_upload),
                 chat_id=update.message.chat.id,
                 message_id=update.message.id,
                 disable_web_page_preview=True
             )
     else:
         await bot.edit_message_text(
-            text=Translation.TECH_VJ_NO_VOID_FORMAT_FOUND.format("Incorrect Link"),
+            text=Translation.NO_VOID_FORMAT_FOUND.format("Incorrect Link"),
             chat_id=update.message.chat.id,
             message_id=update.message.id,
             disable_web_page_preview=True
@@ -219,7 +215,7 @@ async def ddl_call_back(bot, update):
 async def download_coroutine(bot, session, url, file_name, chat_id, message_id, start):
     downloaded = 0
     display_message = ""
-    async with session.get(url, timeout=Config.TECH_VJ_PROCESS_MAX_TIMEOUT) as response:
+    async with session.get(url, timeout=Config.PROCESS_MAX_TIMEOUT) as response:
         total_length = int(response.headers["Content-Length"])
         content_type = response.headers["Content-Type"]
         if "text" in content_type and total_length < 500:
@@ -233,11 +229,11 @@ File Size: {}""".format(url, humanbytes(total_length))
         )
         with open(file_name, "wb") as f_handle:
             while True:
-                chunk = await response.content.read(Config.TECH_VJ_CHUNK_SIZE)
+                chunk = await response.content.read(Config.CHUNK_SIZE)
                 if not chunk:
                     break
                 f_handle.write(chunk)
-                downloaded += Config.TECH_VJ_CHUNK_SIZE
+                downloaded += Config.CHUNK_SIZE
                 now = time.time()
                 diff = now - start
                 if round(diff % 5.00) == 0 or downloaded == total_length:
