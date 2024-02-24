@@ -51,7 +51,7 @@
     },
 
     "BOT_USERNAME ": {
-      "description":Your Bot Username Without @",
+      "description": "Your Bot Username Without @",
       "value": "Hx_URLuploadBot"
     },
 
@@ -81,7 +81,7 @@
     },
 
       "UPDATES_CHANNEL": {
-      "description": your update channel id and to force sub user",
+      "description": "your update channel id and to force sub user",
       "value": "-10012345678"
     },
 
@@ -109,7 +109,7 @@
   "formation": {
      "worker": {
        "quantity": 1,
-       "size": "free"
+       "size": "basic"
      }
   }
 }
