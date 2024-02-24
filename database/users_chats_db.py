@@ -60,4 +60,4 @@ class Database:
         return (await self.db.command("dbstats"))['dataSize']
 
 
-tech_vj = Database(DATABASE_URI, DATABASE_NAME)
+DB = Database(DATABASE_URI, DATABASE_NAME)
