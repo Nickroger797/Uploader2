@@ -1,7 +1,3 @@
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 import asyncio
 from typing import (
     Union
@@ -23,10 +19,10 @@ async def get_invite_link(bot: Client, chat_id: Union[str, int]):
 
 
 async def handle_force_sub(bot: Client, update: Message):
-    if Config.TECH_VJ_UPDATES_CHANNEL and str(Config.TECH_VJ_UPDATES_CHANNEL).startswith("-100"):
-        channel_chat_id = int(Config.TECH_VJ_UPDATES_CHANNEL)
-    elif Config.TECH_VJ_UPDATES_CHANNEL and (not Config.TECH_VJ_UPDATES_CHANNEL.startswith("-100")):
-        channel_chat_id = Config.TECH_VJ_UPDATES_CHANNEL
+    if Config.UPDATES_CHANNEL and str(Config.UPDATES_CHANNEL).startswith("-100"):
+        channel_chat_id = int(Config.UPDATES_CHANNEL)
+    elif Config.UPDATES_CHANNEL and (not Config.UPDATES_CHANNEL.startswith("-100")):
+        channel_chat_id = Config.UPDATES_CHANNEL
     else:
         return 200
     try:
@@ -34,7 +30,7 @@ async def handle_force_sub(bot: Client, update: Message):
         if user.status == "kicked":
             await bot.send_message(
                 chat_id=update.from_user.id,
-                text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/vj_bot_disscussion).",
+                text="Sorry Sir, You are Banned to use me. Contact my [Support Group](https://t.me/HxSupport).",
                 disable_web_page_preview=True
             )
             return 400
@@ -42,7 +38,7 @@ async def handle_force_sub(bot: Client, update: Message):
         try:
             invite_link = await get_invite_link(bot, chat_id=channel_chat_id)
         except Exception as err:
-            print(f"Unable to do Force Subscribe to {Config.TECH_VJ_UPDATES_CHANNEL}\n\nError: {err}")
+            print(f"Unable to do Force Subscribe to {Config.UPDATES_CHANNEL}\n\nError: {err}")
             return 200
         await bot.send_message(
             chat_id=update.from_user.id,
@@ -63,7 +59,7 @@ async def handle_force_sub(bot: Client, update: Message):
     except Exception:
         await bot.send_message(
             chat_id=update.from_user.id,
-            text="Something went Wrong. Contact my [Support Group](https://t.me/vj_bot_disscussion).",
+            text="Something went Wrong. Contact my [Support Group](https://t.me/HxSupport).",
             disable_web_page_preview=True
         )
         return 200
