@@ -1,7 +1,3 @@
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 import logging, requests, urllib.parse, os, time, shutil, asyncio, json, math
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
@@ -12,7 +8,7 @@ from pyrogram import filters, enums
 from database.access import techvj
 from translation import Translation
 from database.adduser import AddUser
-from pyrogram import Client as Tech_VJ
+from pyrogram import Client
 from hachoir.parser import createParser
 from hachoir.metadata import extractMetadata
 from helper_funcs.display_progress import humanbytes
@@ -21,13 +17,13 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from helper_funcs.display_progress import progress_for_pyrogram, humanbytes, TimeFormatter
 from utils import verify_user, check_token, check_verification, get_token
 
-@Tech_VJ.on_message(filters.private & ~filters.via_bot & filters.regex(pattern=".*http.*"))
+@Client.on_message(filters.private & ~filters.via_bot & filters.regex(pattern=".*http.*"))
 async def echo(bot, update):
-    if not await check_verification(bot, update.from_user.id) and Config.TECH_VJ == True:
+    if not await check_verification(bot, update.from_user.id) and Config.Client == True:
         btn = [[
-            InlineKeyboardButton("👨‍💻 ᴠᴇʀɪғʏ", url=await get_token(bot, update.from_user.id, f"https://telegram.me/{Config.TECH_VJ_BOT_USERNAME}?start="))
+            InlineKeyboardButton("👨‍💻 ᴠᴇʀɪғʏ", url=await get_token(bot, update.from_user.id, f"https://telegram.me/{Config.BOT_USERNAME}?start="))
             ],[
-            InlineKeyboardButton("🔻 ʜᴏᴡ ᴛᴏ ᴏᴘᴇɴ ʟɪɴᴋ ᴀɴᴅ ᴠᴇʀɪғʏ 🔺", url=f"{Config.TECH_VJ_TUTORIAL}")
+            InlineKeyboardButton("🔻 ʜᴏᴡ ᴛᴏ ᴏᴘᴇɴ ʟɪɴᴋ ᴀɴᴅ ᴠᴇʀɪғʏ 🔺", url=f"{Config.TUTORIAL}")
         ]]
         await update.reply_text(
             text="<b>ᴅᴜᴇ ᴛᴏ ᴏᴠᴇʀʟᴏᴀᴅ ᴏɴ ʙᴏᴛ ʏᴏᴜ ʜᴀᴠᴇ ᴠᴇʀɪғʏ ғɪʀsᴛ\nᴋɪɴᴅʟʏ ᴠᴇʀɪғʏ ғɪʀsᴛ\n\nɪғ ʏᴏᴜ ᴅᴏɴ'ᴛ ᴋɴᴏᴡ ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ ᴛʜᴇɴ ᴛᴀᴘ ᴏɴ ʜᴏᴡ ᴛᴏ ᴏᴘᴇɴ ʟɪɴᴋ ʙᴜᴛᴛᴏɴ ᴛʜᴇɴ sᴇᴇ 60 sᴇᴄᴏɴᴅ ᴠɪᴅᴇᴏ ᴛʜᴇɴ ᴄʟɪᴄᴋ ᴏɴ ᴠᴇʀɪғʏ ʙᴜᴛᴛᴏɴ ᴀɴᴅ ᴠᴇʀɪғʏ</b>",
@@ -78,14 +74,14 @@ async def echo(bot, update):
                 o = entity.offset
                 l = entity.length
                 url = url[o:o + l]
-    if Config.TECH_VJ_HTTP_PROXY != "":
+    if Config.HTTP_PROXY != "":
         command_to_exec = [
             "yt-dlp",
             "--no-warnings",
             "--youtube-skip-dash-manifest",
             "-j",
             url,
-            "--proxy", Config.TECH_VJ_HTTP_PROXY
+            "--proxy", Config.HTTP_PROXY
         ]
     else:
         command_to_exec = [
@@ -107,13 +103,13 @@ async def echo(bot, update):
     e_response = stderr.decode().strip()
     t_response = stdout.decode().strip()
     if e_response and "nonnumeric port" not in e_response:
-        error_message = e_response.replace(Translation.TECH_VJ_ERROR_YTDLP, "")
+        error_message = e_response.replace(Translation.ERROR_YTDLP, "")
         if "This video is only available for registered users." in error_message:
-            error_message = Translation.TECH_VJ_SET_CUSTOM_USERNAME_PASSWORD
+            error_message = Translation.SET_CUSTOM_USERNAME_PASSWORD
         else:
             error_message = "sᴀɪᴅ ɪɴᴠᴀʟɪᴅ ᴜʀʟ 🚸</code>"
         await bot.send_message(chat_id=update.chat.id,
-        text=Translation.TECH_VJ_NO_VOID_FORMAT_FOUND.format(str(error_message)),
+        text=Translation.NO_VOID_FORMAT_FOUND.format(str(error_message)),
         disable_web_page_preview=True, parse_mode=enums.ParseMode.HTML,
         reply_to_message_id=update.id)
         await imog.delete(True)
@@ -124,7 +120,7 @@ async def echo(bot, update):
         if "\n" in x_reponse:
             x_reponse, _ = x_reponse.split("\n")
         response_json = json.loads(x_reponse)
-        save_ytdl_json_path = Config.TECH_VJ_DOWNLOAD_LOCATION + \
+        save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
             "/" + str(update.from_user.id) + ".json"
         with open(save_ytdl_json_path, "w", encoding="utf8") as outfile:
             json.dump(response_json, outfile, ensure_ascii=False)
@@ -234,7 +230,7 @@ async def echo(bot, update):
         await imog.delete(True)
         await bot.send_message(
             chat_id=update.chat.id,
-            text=Translation.TECH_VJ_FORMAT_SELECTION + "\n" + Translation.TECH_VJ_SET_CUSTOM_USERNAME_PASSWORD,
+            text=Translation.FORMAT_SELECTION + "\n" + Translation.SET_CUSTOM_USERNAME_PASSWORD,
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML,
             reply_to_message_id=update.id
@@ -259,7 +255,7 @@ async def echo(bot, update):
         await imog.delete(True)
         await bot.send_message(
         chat_id=update.chat.id,
-        text=Translation.TECH_VJ_FORMAT_SELECTION,
+        text=Translation.FORMAT_SELECTION,
         reply_markup=reply_markup,
         parse_mode=enums.ParseMode.HTML,
         reply_to_message_id=update.id)
