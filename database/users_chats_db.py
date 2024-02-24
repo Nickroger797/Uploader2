@@ -1,12 +1,9 @@
-# Don't Remove Credit @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot @Tech_VJ
-# Ask Doubt on telegram @KingVJ01
 
 import motor.motor_asyncio
 from config import Config
 
-DATABASE_NAME = "vjbotztechvj"
-DATABASE_URI = Config.TECH_VJ_DATABASE_URL
+DATABASE_NAME = "Url-UploadBot"
+DATABASE_URI = Config.DATABASE_URL
 
 class Database:
     
@@ -64,7 +61,3 @@ class Database:
 
 
 tech_vj = Database(DATABASE_URI, DATABASE_NAME)
-
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
