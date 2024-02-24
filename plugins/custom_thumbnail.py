@@ -1,7 +1,3 @@
-# Don't Remove Credit Tg - @VJ_Botz
-# Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
-# Ask Doubt on telegram @KingVJ01
-
 import os
 import time
 import numpy
@@ -10,29 +6,29 @@ from PIL import Image
 from config import Config
 from pyrogram import filters
 from translation import Translation
-from database.access import techvj
+from database.access import DB
 from database.adduser import AddUser
-from pyrogram import Client as Tech_VJ
+from pyrogram import Client
 from hachoir.parser import createParser
 from hachoir.metadata import extractMetadata
 from helper_funcs.help_Nekmo_ffmpeg import take_screen_shot
 
-@Tech_VJ.on_message(filters.private & filters.photo)
+@Client.on_message(filters.private & filters.photo)
 async def save_photo(bot, update):
     await AddUser(bot, update)
-    await techvj.set_thumbnail(update.from_user.id, thumbnail=update.photo.file_id)
-    await bot.send_message(chat_id=update.chat.id, text=Translation.TECH_VJ_SAVED_CUSTOM_THUMB_NAIL, reply_to_message_id=update.id)
+    await DB.set_thumbnail(update.from_user.id, thumbnail=update.photo.file_id)
+    await bot.send_message(chat_id=update.chat.id, text=Translation.SAVED_CUSTOM_THUMB_NAIL, reply_to_message_id=update.id)
 
-@Tech_VJ.on_message(filters.private & filters.command("delthumbnail"))
+@Client.on_message(filters.private & filters.command("delthumbnail"))
 async def delthumbnail(bot, update):
     await AddUser(bot, update)
-    await techvj.set_thumbnail(update.from_user.id, thumbnail=None)
-    await bot.send_message(chat_id=update.chat.id, text=Translation.TECH_VJ_DEL_ETED_CUSTOM_THUMB_NAIL, reply_to_message_id=update.id)
+    await DB.set_thumbnail(update.from_user.id, thumbnail=None)
+    await bot.send_message(chat_id=update.chat.id, text=Translation.DEL_ETED_CUSTOM_THUMB_NAIL, reply_to_message_id=update.id)
 
-@Tech_VJ.on_message(filters.private & filters.command("viewthumbnail") )
+@Client.on_message(filters.private & filters.command("viewthumbnail") )
 async def viewthumbnail(bot, update):
     await AddUser(bot, update)
-    thumbnail = await techvj.get_thumbnail(update.from_user.id)
+    thumbnail = await DB.get_thumbnail(update.from_user.id)
     if thumbnail is not None:
         await bot.send_photo(
         chat_id=update.chat.id,
@@ -43,8 +39,8 @@ async def viewthumbnail(bot, update):
         await update.reply_text(text=f"**ɴᴏ ᴛʜᴜᴍʙɴᴀɪʟ ғᴏᴜɴᴅ** 🤒")
 
 async def Gthumb01(bot, update):
-    thumb_image_path = Config.TECH_VJ_DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
-    db_thumbnail = await techvj.get_thumbnail(update.from_user.id)
+    thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
+    db_thumbnail = await DB.get_thumbnail(update.from_user.id)
     if db_thumbnail is not None:
         thumbnail = await bot.download_media(message=db_thumbnail, file_name=thumb_image_path)
         Image.open(thumbnail).convert("RGB").save(thumbnail)
@@ -57,8 +53,8 @@ async def Gthumb01(bot, update):
     return thumbnail
 
 async def Gthumb02(bot, update, duration, download_directory):
-    thumb_image_path = Config.TECH_VJ_DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
-    db_thumbnail = await techvj.get_thumbnail(update.from_user.id)
+    thumb_image_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
+    db_thumbnail = await DB.get_thumbnail(update.from_user.id)
     if db_thumbnail is not None:
         thumbnail = await bot.download_media(message=db_thumbnail, file_name=thumb_image_path)
     else:
