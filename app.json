@@ -5,9 +5,76 @@
   "success_url": "http://t.me/Hx_URLuploadBot",
   "website": "https://github.com/oVo-HxBots",
   "repository": "https://github.com/oVo-HxBots/URL-UploadBot",
-
-
-  "addons": [ ],
+ 
+  "env": {
+    "WEBHOOK": {
+      "description": "Setting this to ANYTHING will enable webhooks when in env mode",
+      "value": "ANYTHING",
+      "required": false
+    },
+    "BOT_TOKEN": {
+      "description": "Your bot token, as a string.",
+      "value": ""
+    },
+    "API_ID": {
+      "description": "Get this value from https://my.telegram.org",
+      "value": ""
+    },
+    "API_HASH": {
+      "description": "Get this value from https://my.telegram.org",
+      "value": ""
+    },
+    "OWNER_ID": {
+      "description": "Your Telegram ID",
+      "value": ""
+    },
+    "DATABASE_URL": {
+      "description": "Your MongoDB URI",
+      "value": ""
+    },
+    "BOT_USERNAME ": {
+      "description": "Your Bot Username Without @",
+      "value": "Hx_URLuploadBot"
+    },
+    "SESSION_NAME": {
+      "description": "Session Name For Bot",
+      "value": "URL-UploadBot",
+      "required": false
+    },
+    "SHORTNER": {
+      "description": "Set False If you want shortlink off else True",
+      "value": "True",
+      "required": false
+    },
+    "SHORTNER_URL": {
+      "description": "your shortlink url domain or url without https://",
+      "value": "linkrex.net",
+      "required": false
+    },
+    "SHORTNER_API": {
+      "description": "your url shortner api",
+      "value": "bcf8fc3fd10fce3224cdadc7713e22d51dd46570",
+      "required": false
+    },
+    "LOG_CHANNEL": {
+      "description": "your log channel id and make bot admin in log channel with full right",
+      "value": "-10012345678"
+    },
+    "UPDATES_CHANNEL": {
+      "description": "your update channel id and to force sub user",
+      "value": "-10012345678"
+    },
+    "CHUNK_SIZE": {
+      "description": "128, 512, 1024",
+      "value": "128",
+      "required": false
+    },
+     "HTTP_PROXY": {
+      "description": "Get your own proxy from https://github.com/rg3/youtube-dl/issues/1091#issuecomment-230163061",
+      "value": "",
+      "required": false
+    }
+  },
   "buildpacks": [
   {
     "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
