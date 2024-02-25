@@ -58,7 +58,7 @@
       "description": "your url shortner api",
       "value": "",
       "required":false
-    },
+    }
   },
 
   "buildpacks": [
