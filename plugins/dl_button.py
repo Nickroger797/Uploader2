@@ -61,7 +61,7 @@ async def ddl_call_back(bot, update):
                 o = entity.offset
                 l = entity.length
                 youtube_dl_url = youtube_dl_url[o:o + l]
-    description = @HxBots
+    description = "@HxBots"
     start = datetime.now()
     await bot.edit_message_text(
         text=Translation.DOWNLOAD_START,
