@@ -16,6 +16,10 @@ import aiohttp
 import json
 from config import Config
 
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logging.getLogger("pyrogram").setLevel(logging.WARNING)
+logger = logging.getLogger(__name__)
+
 
 TOKENS = {}
 VERIFIED = {}
