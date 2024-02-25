@@ -41,21 +41,6 @@
       "value": "URL-UploadBot",
       "required": false
     },
-    "SHORTENER": {
-      "description": "Set False If you want shortlink off else True",
-      "value": "True",
-      "required": false
-    },
-    "SHORTENER_URL": {
-      "description": "your shortlink url domain or url without https://",
-      "value": "linkrex.net",
-      "required": false
-    },
-    "SHORTENER_API": {
-      "description": "your url shortner api",
-      "value": "bcf8fc3fd10fce3224cdadc7713e22d51dd46570",
-      "required": false
-    },
     "LOG_CHANNEL": {
       "description": "your log channel id and make bot admin in log channel with full right",
       "value": "-10012345678"
