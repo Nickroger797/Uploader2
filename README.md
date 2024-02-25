@@ -82,7 +82,7 @@ If you did everything correctly, the bot should be running. Go do `/start` to se
 </details>
 
 ## Demo Bot
-Use this bot [Upload Bot V3🚀](http://t.me/Hx_URLuploadBot)
+Use this bot [URL-UploadBot V3🚀](http://t.me/Hx_URLuploadBot)
 
 ## Environment Variables
 
@@ -107,24 +107,13 @@ Heroku BuildPack :-
 </b>
 </details>
 
-## Commands
-```
-start - Check I'm Alive Or Dead
-help - Incase U Need Help
-delthumbnail - Delete Custom Thumbnail
-viewthumbnail - View Custom Thumbnail
-search - Search torrents
-total - Check Bot's all users
-broadcast - Only Admins ⚠️ 
-```
-
 ## Credit
 
 <b><details><summary>Tap On Me For See Credit</summary>
 
 💝 Credit Goes To [Clinton Abraham](https://github.com/Clinton-Abraham) For Repository.
 
-🖍️ The Token Verification System & Force Subscribe Is Added By [Tech VJ](https://telegram.me/kirodewal) So Don't Forgot To Give Credit
+🖍️ The Token Verification System & Force Subscribe Is Added By [Kirodewal](https://telegram.me/kirodewal) So Don't Forgot To Give Credit
 
 💖 And Thank You So Much To All Who Help In This Journey 💕
 
@@ -145,8 +134,18 @@ Copyright ©️ [HXBOTS](https://telegram.me/HXBOTS)
 </b>
 </details>
 
+## Commands
+```
+start - Check I'm Alive Or Dead
+help - Incase U Need Help
+delthumbnail - Delete Custom Thumbnail
+viewthumbnail - View Custom Thumbnail
+search - Search torrents
+total - Check Bot's all users
+broadcast - Only Admins ⚠️ 
+```
 
-### Copyright ©️ [Tech VJ](https://telegram.me/Kingvj01)
+### Copyright ©️ [HxBots](https://telegram.me/HxBots)
 
 <b>Selling This Repo Or Code Of This Repo For Money Is Strictly Prohibited 🚫</b>
 
