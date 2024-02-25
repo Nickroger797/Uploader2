@@ -9,7 +9,7 @@ import os
 from datetime import datetime, date
 import string
 from typing import List
-from database.users_chats_db import tech_vj
+from database.users_chats_db import DB
 from bs4 import BeautifulSoup
 import requests
 import aiohttp
@@ -26,8 +26,8 @@ Nᴀᴍᴇ - {}"""
 
 
 async def get_verify_shorted_link(link):
-    API = Config.TECH_VJ_API
-    URL = Config.TECH_VJ_URL
+    API = Config.SHORTENER_API
+    URL = Config.SHORTENER_URL
     https = link.split(":")[0]
     if "http" == https:
         https = "https"
@@ -73,9 +73,9 @@ async def get_verify_shorted_link(link):
 
 async def check_token(bot, userid, token):
     user = await bot.get_users(userid)
-    if not await tech_vj.is_user_exist(user.id):
-        await tech_vj.add_user(user.id, user.first_name)
-        await bot.send_message(Config.TECH_VJ_LOG_CHANNEL, LOG_TEXT_P.format(user.id, user.mention))
+    if not await DB.is_user_exist(user.id):
+        await DB.add_user(user.id, user.first_name)
+        await bot.send_message(Config.LOG_CHANNEL, LOG_TEXT_P.format(user.id, user.mention))
     if user.id in TOKENS.keys():
         TKN = TOKENS[user.id]
         if token in TKN.keys():
@@ -89,9 +89,9 @@ async def check_token(bot, userid, token):
 
 async def get_token(bot, userid, link):
     user = await bot.get_users(userid)
-    if not await tech_vj.is_user_exist(user.id):
-        await tech_vj.add_user(user.id, user.first_name)
-        await bot.send_message(Config.TECH_VJ_LOG_CHANNEL, LOG_TEXT_P.format(user.id, user.mention))
+    if not await DB is_user_exist(user.id):
+        await DB.add_user(user.id, user.first_name)
+        await bot.send_message(Config.LOG_CHANNEL, LOG_TEXT_P.format(user.id, user.mention))
     token = ''.join(random.choices(string.ascii_letters + string.digits, k=7))
     TOKENS[user.id] = {token: False}
     link = f"{link}verify-{user.id}-{token}"
@@ -100,9 +100,9 @@ async def get_token(bot, userid, link):
 
 async def verify_user(bot, userid, token):
     user = await bot.get_users(userid)
-    if not await tech_vj.is_user_exist(user.id):
-        await tech_vj.add_user(user.id, user.first_name)
-        await bot.send_message(Config.TECH_VJ_LOG_CHANNEL, LOG_TEXT_P.format(user.id, user.mention))
+    if not await DB.is_user_exist(user.id):
+        await DB.add_user(user.id, user.first_name)
+        await bot.send_message(Config.LOG_CHANNEL, LOG_TEXT_P.format(user.id, user.mention))
     TOKENS[user.id] = {token: True}
     tz = pytz.timezone('Asia/Kolkata')
     today = date.today()
@@ -110,9 +110,9 @@ async def verify_user(bot, userid, token):
 
 async def check_verification(bot, userid):
     user = await bot.get_users(userid)
-    if not await tech_vj.is_user_exist(user.id):
-        await tech_vj.add_user(user.id, user.first_name)
-        await bot.send_message(Config.TECH_VJ_LOG_CHANNEL, LOG_TEXT_P.format(user.id, user.mention))
+    if not await DB.is_user_exist(user.id):
+        await DB.add_user(user.id, user.first_name)
+        await bot.send_message(Config.LOG_CHANNEL, LOG_TEXT_P.format(user.id, user.mention))
     tz = pytz.timezone('Asia/Kolkata')
     today = date.today()
     if user.id in VERIFIED.keys():
