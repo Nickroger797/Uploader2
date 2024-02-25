@@ -7,7 +7,7 @@ import asyncio
 from PIL import Image
 from config import Config
 from datetime import datetime
-from database.access import techvj
+from database.access import DB
 from translation import Translation
 from plugins.custom_thumbnail import *
 from pyrogram import enums
@@ -18,7 +18,7 @@ async def youtube_dl_call_back(bot, update):
     try:
         cb_data = update.data
         tg_send_type, youtube_dl_format, youtube_dl_ext = cb_data.split("|")
-        save_ytdl_json_path = Config.TECH_VJ_DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".json"
+        save_ytdl_json_path = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".json"
         with open(save_ytdl_json_path, "r", encoding="utf8") as f:
             response_json = json.load(f)
     except Exception:
@@ -63,11 +63,11 @@ async def youtube_dl_call_back(bot, update):
                 l = entity.length
                 youtube_dl_url = youtube_dl_url[o:o + l]
 
-    await update.message.edit(text=Translation.TECH_VJ_DOWNLOAD_START)
-    description = Translation.TECH_VJ_CUSTOM_CAPTION_UL_FILE
+    await update.message.edit(text=Translation.DOWNLOAD_START)
+    description = Translation.CUSTOM_CAPTION_UL_FILE
     if "fulltitle" in response_json:
         description = response_json["fulltitle"][0:1021]
-    tmp_directory_for_each_user = Config.TECH_VJ_DOWNLOAD_LOCATION + "/" + str(update.from_user.id)
+    tmp_directory_for_each_user = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id)
     if not os.path.isdir(tmp_directory_for_each_user):
         os.makedirs(tmp_directory_for_each_user)
     if '/' in custom_file_name:
@@ -124,7 +124,7 @@ async def youtube_dl_call_back(bot, update):
         await update.message.edit(text="ERROR : File Not found 🙁")
         asyncio.create_task(clendir(tmp_directory_for_each_user))
         return
-    await update.message.edit(text=Translation.TECH_VJ_UPLOAD_START)
+    await update.message.edit(text=Translation.UPLOAD_START)
     try:
         start_time = time.time()
         if tg_send_type == "audio":
@@ -139,7 +139,7 @@ async def youtube_dl_call_back(bot, update):
             thumb=thumbnail,
             reply_to_message_id=update.message.reply_to_message.id,
             progress=progress_for_pyrogram,
-            progress_args=(Translation.TECH_VJ_UPLOAD_START, update.message, start_time))
+            progress_args=(Translation.UPLOAD_START, update.message, start_time))
         elif tg_send_type == "file":
             thumbnail = await Gthumb01(bot, update)
             await bot.send_document(chat_id=update.message.chat.id,
@@ -149,7 +149,7 @@ async def youtube_dl_call_back(bot, update):
             parse_mode=enums.ParseMode.HTML,
             reply_to_message_id=update.message.reply_to_message.id,
             progress=progress_for_pyrogram,
-            progress_args=(Translation.TECH_VJ_UPLOAD_START, update.message, start_time))
+            progress_args=(Translation.UPLOAD_START, update.message, start_time))
         elif tg_send_type == "vm":
             width, duration = await Mdata02(file_location)
             thumbnail = await Gthumb02(bot, update, duration, file_location)
@@ -160,7 +160,7 @@ async def youtube_dl_call_back(bot, update):
             thumb=thumb_image_path,
             reply_to_message_id=update.message.reply_to_message.id,
             progress=progress_for_pyrogram,
-            progress_args=(Translation.TECH_VJ_UPLOAD_START, update.message, start_time))
+            progress_args=(Translation.UPLOAD_START, update.message, start_time))
         elif tg_send_type == "video":
             width, height, duration = await Mdata01(file_location)
             thumbnail = await Gthumb02(bot, update, duration, file_location)
@@ -175,7 +175,7 @@ async def youtube_dl_call_back(bot, update):
             supports_streaming=True,
             reply_to_message_id=update.message.reply_to_message.id,
             progress=progress_for_pyrogram,
-            progress_args=(Translation.TECH_VJ_UPLOAD_START,
+            progress_args=(Translation.UPLOAD_START,
             update.message, start_time) )
         else:
             thumbnail = await Gthumb01(bot, update)
@@ -186,18 +186,18 @@ async def youtube_dl_call_back(bot, update):
             parse_mode=enums.ParseMode.HTML,
             reply_to_message_id=update.message.reply_to_message.id,
             progress=progress_for_pyrogram,
-            progress_args=(Translation.TECH_VJ_UPLOAD_START, update.message, start_time))
+            progress_args=(Translation.UPLOAD_START, update.message, start_time))
 
         asyncio.create_task(clendir(file_location))
         asyncio.create_task(clendir(thumbnail))
         await bot.edit_message_text(
-        text="<b>ᴜᴘʟᴏᴀᴅᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ ✔️\n\nᴊᴏɪɴ @VJ_BOTZ</b>",
+        text="<b>ᴜᴘʟᴏᴀᴅᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ ✔️\n\nᴊᴏɪɴ @HxBots</b>",
         chat_id=update.message.chat.id,
         message_id=update.message.id,
         disable_web_page_preview=True)
     except Exception as e:
         asyncio.create_task(clendir(download_directory))
-        await bot.edit_message_text(text=Translation.TECH_VJ_ERROR.format(e),
+        await bot.edit_message_text(text=Translation.ERROR.format(e),
         chat_id=update.message.chat.id, message_id=update.message.id)
 
 #=================================
