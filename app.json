@@ -22,7 +22,7 @@
   "env": {
     "WEBHOOK": {
       "description": "Setting this to ANYTHING will enable webhooks when in env mode",
-      "value": "ANYTHING"
+      "value": "ANYTHING",
       "required": false
     },
 
@@ -58,25 +58,25 @@
 
     "SESSION_NAME": {
       "description": "Session Name For Bot",
-      "value": "URL-UploadBot"
+      "value": "URL-UploadBot",
       "required": false
     },
 
     "SHORTNER": {
       "description": "Set False If you want shortlink off else True",
-      "value": "True"
+      "value": "True",
       "required": false
     },
 
     "SHORTNER_URL": {
       "description": "your shortlink url domain or url without https://",
-      "value": "linkrex.net"
+      "value": "linkrex.net",
       "required": false
     },
 
     "SHORTNER_API": {
       "description": "your url shortner api",
-      "value": "bcf8fc3fd10fce3224cdadc7713e22d51dd46570"
+      "value": "bcf8fc3fd10fce3224cdadc7713e22d51dd46570",
       "required": false
     },
 
@@ -92,13 +92,13 @@
 
     "CHUNK_SIZE": {
       "description": "128, 512, 1024",
-      "value": "128"
+      "value": "128",
       "required": false
     },
 
      "HTTP_PROXY": {
       "description": "Get your own proxy from https://github.com/rg3/youtube-dl/issues/1091#issuecomment-230163061",
-      "value": ""
+      "value": "",
       "required": false
     }
     
