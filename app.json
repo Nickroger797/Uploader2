@@ -92,7 +92,7 @@
 
      "HTTP_PROXY": {
       "description": "Get your own proxy from https://github.com/rg3/youtube-dl/issues/1091#issuecomment-230163061",
-      "value": "128"
+      "value": ""
     }
     
 
@@ -109,7 +109,7 @@
   "formation": {
      "worker": {
        "quantity": 1,
-       "size": "basic"
+       "size": "eco"
      }
   }
 }
