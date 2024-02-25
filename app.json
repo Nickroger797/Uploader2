@@ -51,7 +51,7 @@
      },
     "SHORTENER_URL": {
       "description": "shortener site link without https://",
-      "value": "linkrex.net,
+      "value": "linkrex.net",
       "required":false
     },
     "SHORTENER_API": {
