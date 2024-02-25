@@ -32,14 +32,15 @@
 
 
 ## Build & Deploy (No warranty)
-<b><details><summary>Heroku</summary>
+<b><details><summary> Heroku</summary>
 
   ㅤ ㅤ   ㅤ <a href="https://dashboard.heroku.com/new?template=https://github.com/oVo-HxBots/URL-UploadBot"><img alt="heroku" src="https://img.shields.io/badge/-Deploy%20To%20Heroku-purple?style=for-the-badge&logo=heroku&logoColor=white"/></a> 
 
 </b>
 </details>
 
-<b><details><summary>VPS</summary>
+<b><details><summary> VPS</summary>
+
 :heavy_exclamation_mark: This project requires Python3.10 or higher
 
 **Clone and setup virtual environment**
