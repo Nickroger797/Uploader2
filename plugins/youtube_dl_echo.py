@@ -5,7 +5,7 @@ logger = logging.getLogger(__name__)
 
 from config import Config
 from pyrogram import filters, enums
-from database.access import techvj
+from database.access import DB
 from translation import Translation
 from database.adduser import AddUser
 from pyrogram import Client
