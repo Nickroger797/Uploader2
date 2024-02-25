@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://graph.org/file/d57d6f83abb6b8d0efb02.jpg" alt="Logo">
+  <img src="https://graph.org/file/0b549d85d620efac0dd96.jpg" alt="Logo">
 </p>
 <h1 align="center">
  URL UPLOAD BOT
