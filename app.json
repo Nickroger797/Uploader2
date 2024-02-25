@@ -41,17 +41,17 @@
       "value": "URL-UploadBot",
       "required": false
     },
-    "SHORTNER": {
+    "SHORTENER": {
       "description": "Set False If you want shortlink off else True",
       "value": "True",
       "required": false
     },
-    "SHORTNER_URL": {
+    "SHORTENER_URL": {
       "description": "your shortlink url domain or url without https://",
       "value": "linkrex.net",
       "required": false
     },
-    "SHORTNER_API": {
+    "SHORTENER_API": {
       "description": "your url shortner api",
       "value": "bcf8fc3fd10fce3224cdadc7713e22d51dd46570",
       "required": false
