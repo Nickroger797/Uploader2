@@ -17,7 +17,7 @@
 
 <b><details><summary>Tap On Me For Bot Features</summary>
  
-- [x] Upload [YT-DLP Supported Links](https://telegram.me/VJCode/4) to Telegram.
+- [x] Upload YT-DLP Supported Links to Telegram.
 - [x] Upload HTTP/HTTPS as File/Video to Telegram.
 - [x] Upload YouTube & Google Drive Link and much more..
 - [x] Upload zee5, sony.live, voot and much more..
