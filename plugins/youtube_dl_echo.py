@@ -19,7 +19,7 @@ from utils import verify_user, check_token, check_verification, get_token
 
 @Client.on_message(filters.private & ~filters.via_bot & filters.regex(pattern=".*http.*"))
 async def echo(bot, update):
-    if not await check_verification(bot, update.from_user.id) and Config.SHORTENER == True:
+    if not await check_verification(bot, update.from_user.id) if Config.SHORTENER == True:
         btn = [[
             InlineKeyboardButton("👨‍💻 ᴠᴇʀɪғʏ", url=await get_token(bot, update.from_user.id, f"https://telegram.me/{Config.BOT_USERNAME}?start="))
             ],[
