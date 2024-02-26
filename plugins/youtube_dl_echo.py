@@ -31,7 +31,6 @@ async def echo(bot, update):
             reply_markup=InlineKeyboardMarkup(btn)
         )
         return
-    else:
     await AddUser(bot, update)
     imog = await update.reply_text("**ᴘʀᴏᴄᴇssɪɴɢ ʏᴏᴜʀ ʀᴇǫᴜᴇsᴛ ᴅᴇᴀʀ...⚡**", reply_to_message_id=update.id)
     youtube_dl_username = None
