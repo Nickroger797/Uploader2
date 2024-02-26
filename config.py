@@ -59,7 +59,7 @@ class Config(object):
     UPDATES_CHANNEL = int(update_channel) if update_channel and id_pattern.search(update_channel) else None  
     
     # Url Shortner Information 
-    SHORTENER = bool(environ.get('SHORTENER')) # Set False If you want shortlink off else True
+    SHORTENER = bool(environ.get('SHORTENER', 'False')) # Set False If you want shortlink off else True
     SHORTENER_URL = environ.get('SHORTENER_URL', 'linkrex.net') # your shortlink url domain or url without https://
     SHORTENER_API = environ.get('SHORTENER_API', 'bcf8fc3fd10fce3224cdadc7713e22d51dd46570') # your url shortner api
     TUTORIAL = "https://t.me/How_To_Open_Linkl"
