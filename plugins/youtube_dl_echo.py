@@ -19,7 +19,9 @@ from utils import verify_user, check_token, check_verification, get_token
 
 @Client.on_message(filters.private & ~filters.via_bot & filters.regex(pattern=".*http.*"))
 async def echo(bot, update):
-    if not await check_verification(bot, update.from_user.id) and Config.SHORTENER:
+    if Config.SHORTENER == True:
+        return
+    if not await check_verification(bot, update.from_user.id):
         btn = [[
             InlineKeyboardButton("👨‍💻 ᴠᴇʀɪғʏ", url=await get_token(bot, update.from_user.id, f"https://telegram.me/{Config.BOT_USERNAME}?start="))
             ],[
@@ -30,7 +32,7 @@ async def echo(bot, update):
             protect_content=True,
             reply_markup=InlineKeyboardMarkup(btn)
         )
-    else:
+        return
     await AddUser(bot, update)
     imog = await update.reply_text("**ᴘʀᴏᴄᴇssɪɴɢ ʏᴏᴜʀ ʀᴇǫᴜᴇsᴛ ᴅᴇᴀʀ...⚡**", reply_to_message_id=update.id)
     youtube_dl_username = None
