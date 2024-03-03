@@ -2,7 +2,7 @@
 import motor.motor_asyncio
 from config import Config
 
-DATABASE_NAME = "Config.SESSION_NAME"
+DATABASE_NAME = Config.SESSION_NAME
 DATABASE_URI = Config.DATABASE_URL
 
 class Database:
