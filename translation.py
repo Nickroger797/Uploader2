@@ -48,7 +48,7 @@ class Translation(object):
 
 🇵🇲 ғʀᴀᴍᴇᴡᴏʀᴋ : <a href="https://docs.pyrogram.org/">ᴘʏʀᴏɢʀᴀᴍ 2.0.30</a>
 
-👲 ᴅᴇᴠᴇʟᴏᴘᴇʀ : <a href="https://t.me/Kirodewal">ᴋɪʀᴏᴅᴇᴡᴀʟ ᴠᴊ</a></b>
+👲 ᴅᴇᴠᴇʟᴏᴘᴇʀ : <a href="https://t.me/Kirodewal">ᴋɪʀᴏᴅᴇᴡᴀʟ</a></b>
 
 """
 
@@ -83,8 +83,8 @@ class Translation(object):
         [[
             InlineKeyboardButton('💝 sᴜʙsᴄʀɪʙᴇ ᴍʏ ʏᴏᴜᴛᴜʙᴇ ᴄʜᴀɴɴᴇʟ', url='https://youtube.com/@hxbots')
         ], [
-            InlineKeyboardButton('🔍 sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ', url='https://t.me/hxbots'),
-            InlineKeyboardButton('🤖 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/vj_botz')
+            InlineKeyboardButton('🔍 sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ', url='https://t.me/hxsupport'),
+            InlineKeyboardButton('🤖 ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/hxbots')
         ], [
             InlineKeyboardButton('🏠 ʜᴏᴍᴇ', callback_data='home'),
             InlineKeyboardButton('❓ ʜᴇʟᴘ', callback_data='help')
