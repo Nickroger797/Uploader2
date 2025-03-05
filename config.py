@@ -48,7 +48,7 @@ class Config(object):
     SESSION_NAME = "UploadLinkToFileBot"
     
     # database uri (mongodb)
-    DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://tryoutbothai:botno2@cluster1.d0w5i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1")
+    DATABASE_URL = os.environ.get("DATABASE_URL", "mongodb+srv://ap8181568:four@cluster4.ojmga.mongodb.net/?retryWrites=true&w=majority&appName=Cluster4")
     MAX_RESULTS = "50"
 
     # channel information
